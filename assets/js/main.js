@@ -119,14 +119,14 @@ $('.side-header-menu a').each(function() {
     Tooltip, Popover & Tippy Tooltip
 -----------------------------------*/
 /*Bootstrap Tooltip*/
-$('[data-toggle="tooltip"]').tooltip();
+// $('[data-toggle="tooltip"]').tooltip();
 /*Bootstrap Popover*/
-$('[data-toggle="popover"]').popover();
+// $('[data-toggle="popover"]').popover();
 /*Tippy Tooltip*/
-tippy('.tippy, [data-tippy-content], [data-tooltip]', {
-    flipOnUpdate: true,
-    boundary: 'window',
-});
+// tippy('.tippy, [data-tippy-content], [data-tooltip]', {
+//     flipOnUpdate: true,
+//     boundary: 'window',
+// });
 
 /*-- 
     Selectable Table

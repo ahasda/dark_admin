@@ -39,6 +39,8 @@
 
     <!-- Custom Style CSS Only For Demo Purpose -->
     <link id="cus-style" rel="stylesheet" href="assets/css/style-primary.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
         <style>
 
@@ -447,7 +449,7 @@
                                                                     Online Booking For Appointments.
                                                                 </p>
                                                             </div>
-                                                            <form action="https://validthemes.net/site-template/cleanu/assets/mail/contact.php" method="POST" class="contact-form" style="background-color: #343434; border-radius: 2px;">
+                                                            <form method="POST" id="family" class="contact-form" enctype="multipart/form-data" style="background-color: #343434; border-radius: 2px;">
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
                                                                         <div class="form-group">
@@ -469,7 +471,8 @@
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
                                                                         <div class="form-group">
-                                                                            <input class="form-control" id="phone" name="phone" placeholder="Phone" type="text">
+                                                                            <label for="" style="color: white;">New Price</label>
+                                                                            <input class="form-control" id="phone" name="phone" placeholder="Phone" type="text" onkeyup="if(/\D/g.test(this.value)) this.value=this.value.replace(/\D/g,'')">
                                                                             <span class="alert-error"></span>
                                                                         </div>
                                                                     </div>
@@ -477,6 +480,16 @@
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
                                                                         <div class="form-group">
+                                                                            <label for="" style="color: white;">Description</label>
+                                                                            <textarea name="message" class="form-control" id="message" cols="30" rows="8" required data-error="Write your message" placeholder="Case Description"></textarea>
+                                                                            <span class="alert-error"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="form-group">
+                                                                            <label for="" style="color: white;">Category</label>
                                                                             <select class="form-control">
                                                                                 <option value="1">Choose Subject</option>
                                                                                 <option value="2">Kitchen Plumbing</option> 
@@ -489,17 +502,47 @@
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
+                                                                        <div class="form-group">
+                                                                            <label for="" style="color: white;">Description</label>
+                                                                            <input  class="form-control" id="file" name="file" placeholder="File" type="file">
+                                                                            <span class="alert-error"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
                                                                         <button class="btn-animation dark border" type="submit" name="submit" id="submit" style="background-color: rgb(28, 189, 189);">
-                                                                            <span>Book Now <i class="fas fa-angle-right"></i></span>
+                                                                            <span>Upload Now <i class="fa-solid fa-upload"></i></span>
                                                                         </button>
                                                                     </div>
                                                                 </div>
+
                                                                 <!-- Alert Message -->
                                                                 <div class="col-lg-12 alert-notification">
                                                                     <div id="message" class="alert-msg"></div>
                                                                 </div>
                                                             </form>
                                                             
+
+                                                            <script>
+                                                                $(document).ready(function(){
+                                                                    $(document).on('submit','#family',function(){
+                                                                        event.preventDefault();
+                                                                        let data = $(this).serialize();
+
+                                                                        $.ajax({
+                                                                            url:'formdata.php',
+                                                                            data : data,
+                                                                            method : 'POST',
+                                                                            success:function(data){
+                                                                                alert(data)
+                                                                            }
+                                                                        })
+
+                                                                    })
+                                                                })
+                                                            </script>
                             
                             
                                                         </div>
@@ -533,7 +576,6 @@
 
     <!-- JS
 ============================================ -->
-
     <!-- Global Vendor, plugins & Activation JS -->
     <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
     <script src="assets/js/vendor/jquery-3.3.1.min.js"></script>
@@ -544,7 +586,16 @@
     <script src="assets/js/plugins/tippy4.min.js.js"></script>
     <!--Main JS-->
     <script src="assets/js/main.js"></script>
-
+    <script>
+        $(document).ready(function(){
+            // Initialize Bootstrap tooltips
+            $('[data-toggle="tooltip"]').tooltip();
+            // Initialize Bootstrap popovers
+            $('[data-toggle="popover"]').popover();
+            // Initialize Tippy tooltips
+            tippy('[data-tippy-content]');
+        });
+    </script>
 </body>
 
 
