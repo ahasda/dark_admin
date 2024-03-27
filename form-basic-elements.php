@@ -472,7 +472,7 @@
                                                                     <div class="col-lg-12">
                                                                         <div class="form-group">
                                                                             <label for="" style="color: white;">New Price</label>
-                                                                            <input class="form-control" id="phone" name="phone" placeholder="Phone" type="text" onkeyup="if(/\D/g.test(this.value)) this.value=this.value.replace(/\D/g,'')">
+                                                                            <input class="form-control" id="newp" name="newp" placeholder="newp" type="text" onkeyup="if(/\D/g.test(this.value)) this.value=this.value.replace(/\D/g,'')">
                                                                             <span class="alert-error"></span>
                                                                         </div>
                                                                     </div>
@@ -490,12 +490,16 @@
                                                                     <div class="col-lg-12">
                                                                         <div class="form-group">
                                                                             <label for="" style="color: white;">Category</label>
-                                                                            <select class="form-control">
-                                                                                <option value="1">Choose Subject</option>
-                                                                                <option value="2">Kitchen Plumbing</option> 
-                                                                                <option value="4">Gas Line service</option>
-                                                                                <option value="5">Water line repair</option>
-                                                                                <option value="6">Bathroom plumbing</option>
+                                                                 <select class="form-control" name="pdata" id="pdata">
+                                                                    <option value="Choose Subject">Choose Subject</option>
+
+                                                                     <option value="Kitchen">Kitchen Plumbing</option> 
+
+                                                                     <option value="Gas Line">Gas Line service</option>
+
+                                                                    <option value="Water line">Water line repair</option>
+
+                                                                    <option value="Bathroom plumbing">Bathroom plumbing</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -503,7 +507,8 @@
                                                                 <div class="row">
                                                                     <div class="col-lg-12">
                                                                         <div class="form-group">
-                                                                            <label for="" style="color: white;">Description</label>
+                                                                            <label for="" style="color: white;">File Upload</label>
+
                                                                             <input  class="form-control" id="file" name="file" placeholder="File" type="file">
                                                                             <span class="alert-error"></span>
                                                                         </div>
@@ -527,16 +532,17 @@
 
                                                             <script>
                                                                 $(document).ready(function(){
-                                                                    $(document).on('submit','#family',function(){
+                                                                    $(#family).on('submit',function(e){
                                                                         event.preventDefault();
                                                                         let data = $(this).serialize();
 
                                                                         $.ajax({
                                                                             url:'formdata.php',
                                                                             data : data,
+                                                                            contentType:false,
                                                                             method : 'POST',
                                                                             success:function(data){
-                                                                                alert(data)
+                                                                               alert(data)
                                                                             }
                                                                         })
 
