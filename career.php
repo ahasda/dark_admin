@@ -1,37 +1,5 @@
 
 
-<?php
-// Database connection
-$conn = mysqli_connect('localhost', 'root', '', 'lappymak_litem-fee') or die();
-
-// Pagination variables
-$results_per_page = 20; // Number of results per page
-$query = "SELECT * FROM `contact_detalis`";
-$result = mysqli_query($conn, $query);
-$number_of_results = mysqli_num_rows($result);
-$number_of_pages = ceil($number_of_results / $results_per_page);
-
-// Determine which page number visitor is currently on
-if (!isset($_GET['page'])) {
-    $page = 1;
-} else {
-    $page = $_GET['page'];
-}
-
-// Calculate the starting limit for the query
-$this_page_first_result = ($page - 1) * $results_per_page;
-
-// SQL query with pagination
-$query = "SELECT * FROM `contact_detalis` LIMIT $this_page_first_result, $results_per_page";
-$result = mysqli_query($conn, $query);
-
-
-
-?>
-
-
-
-
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -40,7 +8,7 @@ $result = mysqli_query($conn, $query);
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Litem Career page</title>
+    <title>Litem Admin Panel</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -71,18 +39,7 @@ $result = mysqli_query($conn, $query);
     <!-- Custom Style CSS Only For Demo Purpose -->
     <link id="cus-style" rel="stylesheet" href="assets/css/style-primary.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
-
-<style>
-
-textarea{
-    background-color: transparent;
-    color: white;
-}
-
-</style>
 
 <body class="skin-dark">
 
@@ -91,18 +48,17 @@ textarea{
 
         <!-- Header Section Start -->
 
-          <?php 
+           <?php 
 
             include "header.php";
 
          ?>
 
-
-       <!-- Header Section End -->
+        <!-- Header Section End -->
 
         
         <!-- Side Header Start -->
-
+       
         <?php 
 
         include "navbar.php";
@@ -120,7 +76,7 @@ textarea{
                 <!-- Page Heading Start -->
                 <div class="col-12 col-lg-auto mb-20">
                     <div class="page-heading">
-                        <h3>Dashboard <span>/ Litem Data</span></h3>
+                        <h3>Dashboard <span>/ Career Data</span></h3>
                     </div>
                 </div><!-- Page Heading End -->
 
@@ -138,7 +94,6 @@ textarea{
             <div class="row mbn-30">
 
                 <!-- Recent Transaction Start -->
-                
                 <div class="col-12 mb-30">
                     <div class="box">
                         <div class="box-head">
@@ -152,37 +107,33 @@ textarea{
                                     <thead>
                                         <tr>
                                             
-                                            <th><span>Id</span></th>
-                                            <th><span>Name</span></th>
-                                            <th><span>Email</span></th>
-                                            <th><span>State</span></th>
-                                            <th><span>District</span></th>
-                                            <th><span>Service</span></th>
-                                            <th><span>Sub Service</span></th>
-                                            <th><span>Phone</span></th>
-                                            <th><span>Case Description</span></th>
                                             
+                                            <th><span>Name</span></th>
+                                            <th><span>College Name</span></th>
+                                            <th><span>City</span></th>
+                                            <th><span>Resume</span></th>
+                                            <th><span>Year</span></th>
                                         </tr>
                                     </thead><!-- Table Head End -->
 
                                     <!-- Table Body Start -->
                                     <tbody>
                             <?php
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo "<tr>";
-                                echo "<td>" . $row['id'] . "</td>";
-                                echo "<td>" . $row['name'] . "</td>";
-                                echo "<td>" . $row['email'] . "</td>";
-                                echo "<td>" . $row['state'] . "</td>";
-                                echo "<td>" . $row['district'] . "</td>";
-                                echo "<td>" . $row['service'] . "</td>";
-                                echo "<td>" . $row['sub_service'] . "</td>";
-                                echo "<td>" . $row['phone_no'] . "</td>";
-                                echo "<td><textarea>" . $row['descrip'] . "</textarea></td>";
-                                echo "<td><a class='h5' href='#'>Send</a></td>";
-                                echo "<td><a class='h5' href='#'>Delete</a></td>";
-                                echo "</tr>";
-                            }
+                            // while ($row = mysqli_fetch_array($result)) {
+                            //     echo "<tr>";
+                            //     echo "<td>" . $row['id'] . "</td>";
+                            //     echo "<td>" . $row['name'] . "</td>";
+                            //     echo "<td>" . $row['email'] . "</td>";
+                            //     echo "<td>" . $row['state'] . "</td>";
+                            //     echo "<td>" . $row['district'] . "</td>";
+                            //     echo "<td>" . $row['service'] . "</td>";
+                            //     echo "<td>" . $row['sub_service'] . "</td>";
+                            //     echo "<td>" . $row['phone_no'] . "</td>";
+                            //     echo "<td>" . $row['descrip'] . "</td>";
+                            //     echo "<td><a class='h5' href='#'>Edit</a></td>";
+                            //     echo "<td><a class='h5' href='#'>Delete</a></td>";
+                            //     echo "</tr>";
+                            // }
                             ?>
                         </tbody><!-- Table Body End -->
                     </table>
@@ -192,30 +143,28 @@ textarea{
                 <div class="pagination">
                     <?php
                     // Previous button
-                    if ($page > 1) {
-                        echo "<a href='?page=" . ($page - 1) . "' class='ps-3 pe-3'>&laquo; Previous</a>";
-                    } else {
-                        echo "<span class='disabled '>&laquo; Previous</span>";
-                    }
+                    // if ($page > 1) {
+                    //     echo "<a href='?page=" . ($page - 1) . "'>&laquo; Previous</a>";
+                    // } else {
+                    //     echo "<span class='disabled'>&laquo; Previous</span>";
+                    // }
 
                     // Page numbers
-                    for ($i = 1; $i <= $number_of_pages; $i++) {
-                        echo "<a href='?page=" . $i . "' class='ps-3 pe-3'>" . $i . "</a> ";
-                    }
+                    // for ($i = 1; $i <= $number_of_pages; $i++) {
+                    //     echo "<a href='?page=" . $i . "'>" . $i . "</a> ";
+                    // }
 
                     // Next button
-                    if ($page < $number_of_pages) {
-                        echo "<a href='?page=" . ($page + 1) . "' class=' ps-3 pe-3'>Next &raquo;</a>";
-                    } else {
-                        echo "<span class='disabled'>Next &raquo;</span>";
-                    }
+                    // if ($page < $number_of_pages) {
+                    //     echo "<a href='?page=" . ($page + 1) . "'>Next &raquo;</a>";
+                    // } else {
+                    //     echo "<span class='disabled'>Next &raquo;</span>";
+                    // }
                     ?>
                 </div>
             </div>
         </div>
-    </div>
-
-                <!-- Recent Transaction End -->
+    </div><!-- Recent Transaction End -->
 
 </div>
 
