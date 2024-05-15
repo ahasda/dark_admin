@@ -82,6 +82,57 @@ textarea{
     color: white;
 }
 
+
+/* Base styles for the pagination container */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* Styles for each pagination link */
+.pagination a {
+    text-decoration: none;
+    color: #ffffff; /* Bootstrap primary color */
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover effect for pagination links */
+.pagination a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Active page link styles */
+.pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+/* Styles for disabled links */
+.pagination .disabled {
+    color: #6c757d; /* Bootstrap secondary color */
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Ensure spacing between page numbers */
+.pagination a.ps-3,
+.pagination a.pe-3,
+.pagination .ps-3,
+.pagination .pe-3 {
+    padding-left: 12px; /* Adjust spacing as needed */
+    padding-right: 12px; /* Adjust spacing as needed */
+}
+
 </style>
 
 <body class="skin-dark">
@@ -161,6 +212,8 @@ textarea{
                                             <th><span>Sub Service</span></th>
                                             <th><span>Phone</span></th>
                                             <th><span>Case Description</span></th>
+                                            <th><span>Date</span></th>
+
                                             
                                         </tr>
                                     </thead><!-- Table Head End -->
@@ -179,8 +232,9 @@ textarea{
                                 echo "<td>" . $row['sub_service'] . "</td>";
                                 echo "<td>" . $row['phone_no'] . "</td>";
                                 echo "<td><textarea>" . $row['descrip'] . "</textarea></td>";
-                                echo "<td><a class='h5' href='#'>Send</a></td>";
-                                echo "<td><a class='h5' href='#'>Delete</a></td>";
+                                echo "<td>" . $row['date'] . "</td>";
+                                // echo "<td><a class='h5' href='#'>Send</a></td>";
+                                // echo "<td><a class='h5' href='#'>Delete</a></td>";
                                 echo "</tr>";
                             }
                             ?>
