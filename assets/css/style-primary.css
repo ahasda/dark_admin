@@ -11756,9 +11756,9 @@ body.side-header-green .side-header .side-header-close {
 
 /*Login & Resister BG*/
 .login-register-bg {
-  background-image: url(../images/bg/login-register-bg.jpg);
+  background-image: url(../images/bg/intellectual-property-law.jpg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center center;
   min-height: 100vh;
   height: 100%;
@@ -11766,14 +11766,11 @@ body.side-header-green .side-header .side-header-close {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  
+      
+   justify-content: center;
+ 
+  align-items: center;
 }
 
 .login-register-bg .content {
@@ -14501,7 +14498,8 @@ body.skin-dark .cus-radio.light .icon::before {
     padding-right: 0 !important;
   }
   [dir="rtl"] .header-notification-area > li:last-child {
-    padding-left: 0 !important;
+    padding-left: 0
+ !important;
     padding-right: 10px !important;
   }
 }
