@@ -65,6 +65,7 @@ $result = mysqli_query($conn, $query);
 
     <!-- Custom Style CSS Only For Demo Purpose -->
     <link id="cus-style" rel="stylesheet" href="assets/css/style-primary.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -206,12 +207,27 @@ $result = mysqli_query($conn, $query);
                                 echo "<td>" . $row['id'] . "</td>";
                                 echo "<td>" . $row['name'] . "</td>";
                                 echo "<td>" . $row['email'] . "</td>";
-                                echo "<td>" . $row['phone_no'] . "</td>";
+                                echo "<td>" . $row['phone'] . "</td>";
                                 echo "<td>" . $row['state'] . "</td>";
                                 echo "<td>" . $row['service'] . "</td>";
-                                  
-                                echo "<td><a class='h5' href='#'>Edit</a></td>";
-                                echo "<td><a class='h5' href='#'>Delete</a></td>";
+
+                                // Create a string with all the property details
+                                $propertyDetails = "ID: " . $row['id'] . "\n" .
+                                "Name: " . $row['name'] . "\n" .
+                                "Email: " . $row['email'] . "\n" .
+                                "Phone No: " . $row['phone'] . "\n" .
+                                "state: " . $row['state'] . "\n" .
+                                "service: " . $row['service'];
+
+                            // URL-encode the property details
+                            $encodedDetails = urlencode($propertyDetails);
+
+                            // Use the phone number from the database row
+                            $phone_no = '7409697047';
+
+                            // Generate the WhatsApp link with the encoded property details
+                            echo "<td> <a href='https://api.whatsapp.com/send?phone=$phone_no&text=$encodedDetails' target='_blank' style='font-size: 30px; color: green;'><i class='fa-brands fa-whatsapp'></i></a></td>";
+
                                 echo "</tr>";
                             }
                             ?>
@@ -229,12 +245,12 @@ $result = mysqli_query($conn, $query);
                         echo "<span class='disabled'>&laquo; Previous</span>";
                     }
 
-                    Page numbers
+                    // Page numbers
                     for ($i = 1; $i <= $number_of_pages; $i++) {
                         echo "<a href='?page=" . $i . "'>" . $i . "</a> ";
                     }
 
-                    Next button
+                    // Next button
                     if ($page < $number_of_pages) {
                         echo "<a href='?page=" . ($page + 1) . "'>Next &raquo;</a>";
                     } else {

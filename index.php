@@ -26,6 +26,23 @@ $result = mysqli_query($conn, $query);
 
 
 
+$query_data = "SELECT * FROM `data_form` LIMIT $this_page_first_result, $results_per_page";
+$result_data = mysqli_query($conn, $query_data);
+
+$data_one = array();
+$data_two = array();
+
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $data_one[] = $row;
+}
+
+while ($row = mysqli_fetch_assoc($result_data)) {
+    $data_two[] = $row;
+}
+
+$data = array_merge($data_one, $data_two);
+
 ?>
 
 
@@ -225,41 +242,82 @@ $result = mysqli_query($conn, $query);
                                     <!-- Table Body Start -->
                                     <tbody>
                                         <?php
-                                        while ($row = mysqli_fetch_array($result)) {
+
+
+                                        for ($i = 0; $i < count($data); $i++) {
                                             echo "<tr>";
-                                            echo "<td>" . $row['id'] . "</td>";
-                                            echo "<td>" . $row['name'] . "</td>";
-                                            echo "<td>" . $row['email'] . "</td>";
-                                            echo "<td>" . $row['state'] . "</td>";
-                                            echo "<td>" . $row['district'] . "</td>";
-                                            echo "<td>" . $row['service'] . "</td>";
-                                            echo "<td>" . $row['sub_service'] . "</td>";
-                                            echo "<td>" . $row['phone_no'] . "</td>";
-                                            echo "<td><textarea>" . $row['descrip'] . "</textarea></td>";
-                                            echo "<td>" . $row['date'] . "</td>";
+                                            echo "<td>" . $data[$i]['id'] . "</td>";
+                                            echo "<td>" . $data[$i]['name'] . "</td>";
+                                            echo "<td>" . $data[$i]['email'] . "</td>";
+                                            echo "<td>" . $data[$i]['state'] . "</td>";
+                                            echo "<td>" . $data[$i]['district'] . "</td>";
+                                            echo "<td>" . $data[$i]['service'] . "</td>";
+                                            echo "<td>" . $data[$i]['sub_service'] . "</td>";
+                                            echo "<td>" . $data[$i]['phone_no'] . "</td>";
+                                            echo "<td>" . $data[$i]['descrip'] . "</td>";
+                                            echo "<td>" . $data[$i]['date'] . "</td>";
 
                                             // Create a string with all the property details
-                                            $propertyDetails = "ID: " . $row['id'] . "\n" .
-                                                "Name: " . $row['name'] . "\n" .
-                                                "Email: " . $row['email'] . "\n" .
-                                                "State: " . $row['state'] . "\n" .
-                                                "District: " . $row['district'] . "\n" .
-                                                "Service: " . $row['service'] . "\n" .
-                                                "Sub-Service: " . $row['sub_service'] . "\n" .
-                                                "Phone No: " . $row['phone_no'] . "\n" .
-                                                "Description: " . $row['descrip'];
+                                            $propertyDetails = "ID: " . $data[$i]['id'] . "\n" .
+                                                "Name: " . $data[$i]['name'] . "\n" .
+                                                "Email: " . $data[$i]['email'] . "\n" .
+                                                "State: " . $data[$i]['state'] . "\n" .
+                                                "District: " . $data[$i]['district'] . "\n" .
+                                                "Service: " . $data[$i]['service'] . "\n" .
+                                                "Sub-Service: " . $data[$i]['sub_service'] . "\n" .
+                                                "Phone No: " . $data[$i]['phone_no'] . "\n" .
+                                                "Description: " . $data[$i]['descrip'];
 
                                             // URL-encode the property details
                                             $encodedDetails = urlencode($propertyDetails);
 
                                             // Use the phone number from the database row
-                                            $phone_no = '9315203907';
+                                            $phone_no = '8376020245';
 
                                             // Generate the WhatsApp link with the encoded property details
                                             echo "<td> <a href='https://api.whatsapp.com/send?phone=$phone_no&text=$encodedDetails' target='_blank' style='font-size: 30px; color: green;'><i class='fa-brands fa-whatsapp'></i></a></td>";
 
+
                                             echo "</tr>";
                                         }
+
+                                        // while ($row = mysqli_fetch_array($result)) {
+
+                                        //     echo "<tr>";
+                                        //     echo "<td>" . $row['id'] . "</td>";
+                                        //     echo "<td>" . $row['name'] . "</td>";
+                                        //     echo "<td>" . $row['email'] . "</td>";
+                                        //     echo "<td>" . $row['state'] . "</td>";
+                                        //     echo "<td>" . $row['district'] . "</td>";
+                                        //     echo "<td>" . $row['service'] . "</td>";
+                                        //     echo "<td>" . $row['sub_service'] . "</td>";
+                                        //     echo "<td>" . $row['phone_no'] . "</td>";
+                                        //     echo "<td><textarea>" . $row['descrip'] . "</textarea></td>";
+                                        //     echo "<td>" . $row['date'] . "</td>";
+
+
+                                        //     // Create a string with all the property details
+                                        //     $propertyDetails = "ID: " . $row['id'] . "\n" .
+                                        //         "Name: " . $row['name'] . "\n" .
+                                        //         "Email: " . $row['email'] . "\n" .
+                                        //         "State: " . $row['state'] . "\n" .
+                                        //         "District: " . $row['district'] . "\n" .
+                                        //         "Service: " . $row['service'] . "\n" .
+                                        //         "Sub-Service: " . $row['sub_service'] . "\n" .
+                                        //         "Phone No: " . $row['phone_no'] . "\n" .
+                                        //         "Description: " . $row['descrip'];
+
+                                        //     // URL-encode the property details
+                                        //     $encodedDetails = urlencode($propertyDetails);
+
+                                        //     // Use the phone number from the database row
+                                        //     $phone_no = '7409697047';
+
+                                        //     // Generate the WhatsApp link with the encoded property details
+                                        //     echo "<td> <a href='https://api.whatsapp.com/send?phone=$phone_no&text=$encodedDetails' target='_blank' style='font-size: 30px; color: green;'><i class='fa-brands fa-whatsapp'></i></a></td>";
+
+                                        //     echo "</tr>";
+                                        // }
                                         ?>
 
                                     </tbody><!-- Table Body End -->
