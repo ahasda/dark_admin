@@ -247,8 +247,7 @@ $result = mysqli_query($conn, $query);
                                                 "Service: " . $row['service'] . "\n" .
                                                 "Sub-Service: " . $row['sub_service'] . "\n" .
                                                 "Phone No: " . $row['phone_no'] . "\n" .
-                                                "Description: " . $row['descrip'] . "\n" .
-                                                "Date: " . $row['date'];
+                                                "Description: " . $row['descrip'];
 
                                             // URL-encode the property details
                                             $encodedDetails = urlencode($propertyDetails);
@@ -257,7 +256,7 @@ $result = mysqli_query($conn, $query);
                                             $phone_no = '9315203907';
 
                                             // Generate the WhatsApp link with the encoded property details
-                                            echo "<td> <a href='https://api.whatsapp.com/send?phone=$phone_no&text=$encodedDetails' target='_blank'><i class='fa-brands fa-whatsapp'></i></a></td>";
+                                            echo "<td> <a href='https://api.whatsapp.com/send?phone=$phone_no&text=$encodedDetails' target='_blank' style='font-size: 30px; color: green;'><i class='fa-brands fa-whatsapp'></i></a></td>";
 
                                             echo "</tr>";
                                         }

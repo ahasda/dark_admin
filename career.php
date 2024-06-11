@@ -32,7 +32,6 @@ $result = mysqli_query($conn, $query);
 
 
 <!-- Mirrored from demo.hasthemes.com/adomx-preview/dark/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 13 Mar 2024 12:06:58 GMT -->
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -66,64 +65,60 @@ $result = mysqli_query($conn, $query);
 
     <!-- Custom Style CSS Only For Demo Purpose -->
     <link id="cus-style" rel="stylesheet" href="assets/css/style-primary.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
 <style>
-    /* Base styles for the pagination container */
-    .pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 20px 0;
-    }
+    
+/* Base styles for the pagination container */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
 
-    /* Styles for each pagination link */
-    .pagination a {
-        text-decoration: none;
-        color: #ffffff;
-        /* Bootstrap primary color */
-        padding: 8px 12px;
-        margin: 0 5px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        transition: background-color 0.3s, color 0.3s;
-    }
+/* Styles for each pagination link */
+.pagination a {
+    text-decoration: none;
+    color: #ffffff; /* Bootstrap primary color */
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-    /* Hover effect for pagination links */
-    .pagination a:hover {
-        background-color: #007bff;
-        color: #fff;
-    }
+/* Hover effect for pagination links */
+.pagination a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
 
-    /* Active page link styles */
-    .pagination a.active {
-        background-color: #007bff;
-        color: #fff;
-        border-color: #007bff;
-    }
+/* Active page link styles */
+.pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
 
-    /* Styles for disabled links */
-    .pagination .disabled {
-        color: #6c757d;
-        /* Bootstrap secondary color */
-        padding: 8px 12px;
-        margin: 0 5px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-    }
+/* Styles for disabled links */
+.pagination .disabled {
+    color: #6c757d; /* Bootstrap secondary color */
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
 
-    /* Ensure spacing between page numbers */
-    .pagination a.ps-3,
-    .pagination a.pe-3,
-    .pagination .ps-3,
-    .pagination .pe-3 {
-        padding-left: 12px;
-        /* Adjust spacing as needed */
-        padding-right: 12px;
-        /* Adjust spacing as needed */
-    }
+/* Ensure spacing between page numbers */
+.pagination a.ps-3,
+.pagination a.pe-3,
+.pagination .ps-3,
+.pagination .pe-3 {
+    padding-left: 12px; /* Adjust spacing as needed */
+    padding-right: 12px; /* Adjust spacing as needed */
+}
 </style>
 
 <body class="skin-dark">
@@ -133,22 +128,22 @@ $result = mysqli_query($conn, $query);
 
         <!-- Header Section Start -->
 
-        <?php
+           <?php 
 
-        include "header.php";
+            include "header.php";
 
-        ?>
+         ?>
 
         <!-- Header Section End -->
 
-
+        
         <!-- Side Header Start -->
-
-        <?php
+       
+        <?php 
 
         include "navbar.php";
 
-        ?>
+         ?>
 
         <!-- Side Header End -->
 
@@ -174,7 +169,7 @@ $result = mysqli_query($conn, $query);
 
             </div><!-- Page Headings End -->
 
-
+         
 
             <div class="row mbn-30">
 
@@ -191,7 +186,7 @@ $result = mysqli_query($conn, $query);
                                     <!-- Table Head Start -->
                                     <thead>
                                         <tr>
-
+                                            
                                             <th><span>Id</span></th>
                                             <th><span>Name</span></th>
                                             <th><span>Email</span></th>
@@ -205,55 +200,53 @@ $result = mysqli_query($conn, $query);
 
                                     <!-- Table Body Start -->
                                     <tbody>
-                                        <?php
-                                        while ($row = mysqli_fetch_array($result)) {
-                                            echo "<tr>";
-                                            echo "<td>" . $row['id'] . "</td>";
-                                            echo "<td>" . $row['name'] . "</td>";
-                                            echo "<td>" . $row['email'] . "</td>";
-                                            echo "<td>" . $row['phone'] . "</td>";
-                                            echo "<td>" . $row['state'] . "</td>";
-                                            echo "<td>" . $row['service'] . "</td>";
-                                            echo "<td>" . $row['date'] . "</td>";
-                                            echo "</tr>";
-                                        }
-                                        ?>
-                                    </tbody><!-- Table Body End -->
-                                </table>
-                            </div>
+                            <?php
+                            while ($row = mysqli_fetch_array($result)) {
+                                echo "<tr>";
+                                echo "<td>" . $row['id'] . "</td>";
+                                echo "<td>" . $row['name'] . "</td>";
+                                echo "<td>" . $row['email'] . "</td>";
+                                echo "<td>" . $row['phone_no'] . "</td>";
+                                echo "<td>" . $row['state'] . "</td>";
+                                echo "<td>" . $row['service'] . "</td>";
+                                  
+                                echo "<td><a class='h5' href='#'>Edit</a></td>";
+                                echo "<td><a class='h5' href='#'>Delete</a></td>";
+                                echo "</tr>";
+                            }
+                            ?>
+                        </tbody><!-- Table Body End -->
+                    </table>
+                </div>
 
-                            <!-- Pagination -->
-                            <div class="pagination">
+                <!-- Pagination -->
+                <div class="pagination">
+                    <?php
+                    // Previous button
+                    if ($page > 1) {
+                        echo "<a href='?page=" . ($page - 1) . "'>&laquo; Previous</a>";
+                    } else {
+                        echo "<span class='disabled'>&laquo; Previous</span>";
+                    }
 
-                                <?php
-                                // Previous button
-                                if ($page > 1) {
-                                    echo "<a href='?page=" . ($page - 1) . "' class='ps-3 pe-3'>&laquo; Previous</a>";
-                                } else {
-                                    echo "<span class='disabled '>&laquo; Previous</span>";
-                                }
+                    Page numbers
+                    for ($i = 1; $i <= $number_of_pages; $i++) {
+                        echo "<a href='?page=" . $i . "'>" . $i . "</a> ";
+                    }
 
-                                // Page numbers
-                                for ($i = 1; $i <= $number_of_pages; $i++) {
-                                    echo "<a href='?page=" . $i . "' class='ps-3 pe-3'>" . $i . "</a> ";
-                                }
-
-                                // Next button
-                                if ($page < $number_of_pages) {
-                                    echo "<a href='?page=" . ($page + 1) . "' class=' ps-3 pe-3'>Next &raquo;</a>";
-                                } else {
-                                    echo "<span class='disabled'>Next &raquo;</span>";
-                                }
-                                ?>
-
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- Recent Transaction End -->
-
+                    Next button
+                    if ($page < $number_of_pages) {
+                        echo "<a href='?page=" . ($page + 1) . "'>Next &raquo;</a>";
+                    } else {
+                        echo "<span class='disabled'>Next &raquo;</span>";
+                    }
+                    ?>
+                </div>
             </div>
+        </div>
+    </div><!-- Recent Transaction End -->
+
+</div>
 
         </div><!-- Content Body End -->
 
@@ -262,7 +255,7 @@ $result = mysqli_query($conn, $query);
             <div class="container-fluid">
 
                 <div class="footer-copyright text-center">
-                <p class="text-body-light">2024 &copy; <a href="https://themeforest.net/user/codecarnival">Litem Legalis</a></p>
+                    <p class="text-body-light">2019 &copy; <a href="https://themeforest.net/user/codecarnival">Codecarnival</a></p>
                 </div>
 
             </div>
@@ -307,5 +300,4 @@ $result = mysqli_query($conn, $query);
 
 
 <!-- Mirrored from demo.hasthemes.com/adomx-preview/dark/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 13 Mar 2024 12:07:24 GMT -->
-
 </html>
