@@ -2,7 +2,7 @@
 header("Content-Type: application/json");
 
 // Database connection
-$conn = mysqli_connect('localhost','root','','litem_fee') or die();
+$conn = mysqli_connect('localhost', 'u291563295_litem_fee', 'Litem@123_legalis', 'u291563295_litem_fee') or die('Unable to connect to the database.');
 
 
 $sql = "SELECT * FROM contact_detalis";

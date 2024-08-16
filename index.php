@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$conn = mysqli_connect('localhost', 'root', '', 'litem_fee') or die();
+$conn = mysqli_connect('localhost', 'u291563295_litem_fee', 'Litem@123_legalis', 'u291563295_litem_fee') or die('Unable to connect to the database.');
 
 $query =  "SELECT * FROM contact_detalis";
 
