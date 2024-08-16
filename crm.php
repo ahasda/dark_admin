@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$con = new mysqli('localhost', 'root', '', 'lappymak_litem-fee') or die();
+$con = new mysqli('localhost', 'root', '', 'litem_fee') or die();
 
 // if ($con->connect_errno) {
 //     die("Failed to connect to MySQL: " . $con->connect_error);

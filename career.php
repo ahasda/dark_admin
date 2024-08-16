@@ -1,6 +1,6 @@
 <?php
 // Database connection
-$conn = mysqli_connect('localhost', 'root', '', 'lappymak_litem-fee') or die();
+$conn = mysqli_connect('localhost', 'root', '', 'litem_fee') or die();
 
 // Pagination variables
 $results_per_page = 20; // Number of results per page

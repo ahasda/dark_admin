@@ -12,7 +12,7 @@ session_start();
 
             <?php
 
-                $conn = mysqli_connect('localhost', 'root', '', 'lappymak_litem-fee') or die();
+                $conn = mysqli_connect('localhost', 'root', '', 'litem_fee') or die();
 
                 $query = mysqli_query($conn, "SELECT * FROM `admin`");
 

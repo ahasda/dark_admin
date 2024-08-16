@@ -1,55 +1,12 @@
 <?php
-// session_start();
-// Database connection
-$conn = mysqli_connect('localhost', 'root', '', 'lappymak_litem-fee') or die();
+session_start();
 
-// Pagination variables
-$results_per_page = 20; // Number of results per page
-$query = "SELECT * FROM `contact_detalis`";
-$result = mysqli_query($conn, $query);
-$number_of_results = mysqli_num_rows($result);
-$number_of_pages = ceil($number_of_results / $results_per_page);
+$conn = mysqli_connect('localhost', 'root', '', 'litem_fee') or die();
 
-// Determine which page number visitor is currently on
-if (!isset($_GET['page'])) {
-    $page = 1;
-} else {
-    $page = $_GET['page'];
-}
-
-// Calculate the starting limit for the query
-$this_page_first_result = ($page - 1) * $results_per_page;
-
-// SQL query with pagination
-$query = "SELECT * FROM `contact_detalis` LIMIT $this_page_first_result, $results_per_page";
-$result = mysqli_query($conn, $query);
-
-
-
-$query_data = "SELECT * FROM `data_form` LIMIT $this_page_first_result, $results_per_page";
-$result_data = mysqli_query($conn, $query_data);
-
-$data_one = array();
-$data_two = array();
-
-
-while ($row = mysqli_fetch_assoc($result)) {
-    $data_one[] = $row;
-}
-
-while ($row = mysqli_fetch_assoc($result_data)) {
-    $data_two[] = $row;
-}
-
-$data = array_merge($data_one, $data_two);
+$query =  "SELECT * FROM contact_detalis";
 
 ?>
 
-
-
-<?php
-// session_start();
-?>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -91,6 +48,15 @@ $data = array_merge($data_one, $data_two);
     <link id="cus-style" rel="stylesheet" href="assets/css/style-primary.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+
+    <!-- pagination cdn  -->
+    <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.1.1/css/buttons.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.css">
+
 
 </head>
 
@@ -218,7 +184,7 @@ $data = array_merge($data_one, $data_two);
                         </div>
                         <div class="box-body">
                             <div class="table-responsive">
-                                <table class="table table-vertical-middle table-selectable">
+                                <table class="table table-vertical-middle table-selectable" id="myTable" id="example" class="display nowrap">
 
                                     <!-- Table Head Start -->
                                     <thead>
@@ -232,7 +198,7 @@ $data = array_merge($data_one, $data_two);
                                             <th><span>Service</span></th>
                                             <th><span>Sub Service</span></th>
                                             <th><span>Phone</span></th>
-                                            <th><span>Case Description</span></th>
+                                            
                                             <th><span>Date</span></th>
 
 
@@ -242,109 +208,53 @@ $data = array_merge($data_one, $data_two);
                                     <!-- Table Body Start -->
                                     <tbody>
                                         <?php
-
-
-                                        for ($i = 0; $i < count($data); $i++) {
+                                        // Run the query
+                                        $run = mysqli_query($conn, "SELECT * FROM contact_detalis ORDER BY date DESC");
+                                        $count=0;
+                                        // Fetch and display each row
+                                        while ($row = mysqli_fetch_assoc($run)) {
                                             echo "<tr>";
-                                            echo "<td>" . $data[$i]['id'] . "</td>";
-                                            echo "<td>" . $data[$i]['name'] . "</td>";
-                                            echo "<td>" . $data[$i]['email'] . "</td>";
-                                            echo "<td>" . $data[$i]['state'] . "</td>";
-                                            echo "<td>" . $data[$i]['district'] . "</td>";
-                                            echo "<td>" . $data[$i]['service'] . "</td>";
-                                            echo "<td>" . $data[$i]['sub_service'] . "</td>";
-                                            echo "<td>" . $data[$i]['phone_no'] . "</td>";
-                                            echo "<td>" . $data[$i]['descrip'] . "</td>";
-                                            echo "<td>" . $data[$i]['date'] . "</td>";
-
-                                            // Create a string with all the property details
-                                            $propertyDetails = "ID: " . $data[$i]['id'] . "\n" .
-                                                "Name: " . $data[$i]['name'] . "\n" .
-                                                "Email: " . $data[$i]['email'] . "\n" .
-                                                "State: " . $data[$i]['state'] . "\n" .
-                                                "District: " . $data[$i]['district'] . "\n" .
-                                                "Service: " . $data[$i]['service'] . "\n" .
-                                                "Sub-Service: " . $data[$i]['sub_service'] . "\n" .
-                                                "Phone No: " . $data[$i]['phone_no'] . "\n" .
-                                                "Description: " . $data[$i]['descrip'];
-
-                                            // URL-encode the property details
-                                            $encodedDetails = urlencode($propertyDetails);
-
-                                            // Use the phone number from the database row
-                                            $phone_no = '8376020245';
-
-                                            // Generate the WhatsApp link with the encoded property details
-                                            echo "<td> <a href='https://api.whatsapp.com/send?phone=$phone_no&text=$encodedDetails' target='_blank' style='font-size: 30px; color: green;'><i class='fa-brands fa-whatsapp'></i></a></td>";
-
-
+                                            echo "<td>" . ++$count. "</td>";
+                                            echo "<td>" . $row['name'] . "</td>";
+                                            echo "<td>" . $row['email'] . "</td>";
+                                            echo "<td>" . $row['state'] . "</td>";
+                                            echo "<td>" . $row['district'] . "</td>";
+                                            echo "<td>" . $row['service'] . "</td>";
+                                            echo "<td>" . $row['sub_service'] . "</td>";
+                                            echo "<td>" . $row['phone_no'] . "</td>";
+                                            // echo "<td>" . $row['case_description'] . "</td>";
+                                            echo "<td>" . $row['date'] . "</td>";
                                             echo "</tr>";
                                         }
-
-                                        // while ($row = mysqli_fetch_array($result)) {
-
-                                        //     echo "<tr>";
-                                        //     echo "<td>" . $row['id'] . "</td>";
-                                        //     echo "<td>" . $row['name'] . "</td>";
-                                        //     echo "<td>" . $row['email'] . "</td>";
-                                        //     echo "<td>" . $row['state'] . "</td>";
-                                        //     echo "<td>" . $row['district'] . "</td>";
-                                        //     echo "<td>" . $row['service'] . "</td>";
-                                        //     echo "<td>" . $row['sub_service'] . "</td>";
-                                        //     echo "<td>" . $row['phone_no'] . "</td>";
-                                        //     echo "<td><textarea>" . $row['descrip'] . "</textarea></td>";
-                                        //     echo "<td>" . $row['date'] . "</td>";
-
-
-                                        //     // Create a string with all the property details
-                                        //     $propertyDetails = "ID: " . $row['id'] . "\n" .
-                                        //         "Name: " . $row['name'] . "\n" .
-                                        //         "Email: " . $row['email'] . "\n" .
-                                        //         "State: " . $row['state'] . "\n" .
-                                        //         "District: " . $row['district'] . "\n" .
-                                        //         "Service: " . $row['service'] . "\n" .
-                                        //         "Sub-Service: " . $row['sub_service'] . "\n" .
-                                        //         "Phone No: " . $row['phone_no'] . "\n" .
-                                        //         "Description: " . $row['descrip'];
-
-                                        //     // URL-encode the property details
-                                        //     $encodedDetails = urlencode($propertyDetails);
-
-                                        //     // Use the phone number from the database row
-                                        //     $phone_no = '7409697047';
-
-                                        //     // Generate the WhatsApp link with the encoded property details
-                                        //     echo "<td> <a href='https://api.whatsapp.com/send?phone=$phone_no&text=$encodedDetails' target='_blank' style='font-size: 30px; color: green;'><i class='fa-brands fa-whatsapp'></i></a></td>";
-
-                                        //     echo "</tr>";
-                                        // }
                                         ?>
-
-                                    </tbody><!-- Table Body End -->
+                                    </tbody>
                                 </table>
+                              
+
+
                             </div>
 
                             <!-- Pagination -->
                             <div class="pagination">
                                 <?php
                                 // Previous button
-                                if ($page > 1) {
-                                    echo "<a href='?page=" . ($page - 1) . "' class='ps-3 pe-3'>&laquo; Previous</a>";
-                                } else {
-                                    echo "<span class='disabled '>&laquo; Previous</span>";
-                                }
+                                // if ($page > 1) {
+                                //     echo "<a href='?page=" . ($page - 1) . "' class='ps-3 pe-3'>&laquo; Previous</a>";
+                                // } else {
+                                //     echo "<span class='disabled '>&laquo; Previous</span>";
+                                // }
 
-                                // Page numbers
-                                for ($i = 1; $i <= $number_of_pages; $i++) {
-                                    echo "<a href='?page=" . $i . "' class='ps-3 pe-3'>" . $i . "</a> ";
-                                }
+                                // // Page numbers
+                                // for ($i = 1; $i <= $number_of_pages; $i++) {
+                                //     echo "<a href='?page=" . $i . "' class='ps-3 pe-3'>" . $i . "</a> ";
+                                // }
 
-                                // Next button
-                                if ($page < $number_of_pages) {
-                                    echo "<a href='?page=" . ($page + 1) . "' class=' ps-3 pe-3'>Next &raquo;</a>";
-                                } else {
-                                    echo "<span class='disabled'>Next &raquo;</span>";
-                                }
+                                // // Next button
+                                // if ($page < $number_of_pages) {
+                                //     echo "<a href='?page=" . ($page + 1) . "' class=' ps-3 pe-3'>Next &raquo;</a>";
+                                // } else {
+                                //     echo "<span class='disabled'>Next &raquo;</span>";
+                                // }
                                 ?>
                             </div>
                         </div>
@@ -402,6 +312,31 @@ $data = array_merge($data_one, $data_two);
     <script src="assets/js/plugins/vmap/maps/jquery.vmap.world.js"></script>
     <script src="assets/js/plugins/vmap/maps/samples/jquery.vmap.sampledata.js"></script>
     <script src="assets/js/plugins/vmap/vmap.active.js"></script>
+
+
+    <!-- pagination data  -->
+    <script src="//cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.1.4/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.1.1/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.1.1/js/buttons.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.1.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.1.1/js/buttons.print.min.js"></script>
+    
+
+<script>
+    // let table = new DataTable('#myTable');
+    new DataTable('#myTable', {
+    layout: {
+        topStart: {
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        }
+    }
+});
+</script>
 
 </body>
 
