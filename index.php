@@ -1,7 +1,7 @@
 <?php
-session_start();
+// session_start();
 
-$conn = mysqli_connect('localhost', 'u291563295_litem_fee', 'Litem@123_legalis', 'u291563295_litem_fee') or die('Unable to connect to the database.');
+$conn = mysqli_connect('localhost', 'root', '', 'litem_fee') or die('Unable to connect to the database.');
 
 $query =  "SELECT * FROM contact_detalis";
 
@@ -10,11 +10,8 @@ $query =  "SELECT * FROM contact_detalis";
 <!doctype html>
 <html class="no-js" lang="en">
 
-
-<!-- Mirrored from demo.hasthemes.com/adomx-preview/dark/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 13 Mar 2024 12:06:58 GMT -->
-
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8">  
     <meta http-equiv="x-ua-compatible" co ntent="ie=edge">
     <title>Litem Career page</title>
     <meta name="robots" content="noindex, follow" />
@@ -332,7 +329,7 @@ $query =  "SELECT * FROM contact_detalis";
     new DataTable('#myTable', {
     layout: {
         topStart: {
-            buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+            buttons: ['copy', 'csv', 'excel']
         }
     }
 });

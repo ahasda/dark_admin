@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$con =  mysqli_connect('localhost', 'u291563295_litem_fee', 'Litem@123_legalis', 'u291563295_litem_fee') or die('Unable to connect to the database.');
+$con =  mysqli_connect('localhost', 'root', '', 'litem_fee') or die('Unable to connect to the database.');
 
 // if ($con->connect_errno) {
 //     die("Failed to connect to MySQL: " . $con->connect_error);

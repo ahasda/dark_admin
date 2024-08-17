@@ -39,6 +39,9 @@
                 <a href="about.php" class="list-group-item list-group-item-action d-flex align-items-center">
                 <i class="fa-regular fa-address-card"></i>&nbsp; <span class="ms-2">About Data</span>
                 </a>
+                <a href="chart.php" class="list-group-item list-group-item-action d-flex align-items-center">
+                <i class="fa-regular fa-address-card"></i>&nbsp; <span class="ms-2">Chart</span>
+                </a>
             </div>
         </nav>
     </div><!-- Side Header Inner End -->

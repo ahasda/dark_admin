@@ -12,7 +12,7 @@ session_start();
 
             <?php
 
-                $conn = mysqli_connect('localhost', 'u291563295_litem_fee', 'Litem@123_legalis', 'u291563295_litem_fee') or die('Unable to connect to the database.');
+                $conn = mysqli_connect('localhost', 'root', '', 'litem_fee') or die('Unable to connect to the database.');
 
                 $query = mysqli_query($conn, "SELECT * FROM `admin`");
 
@@ -24,12 +24,13 @@ session_start();
             ?>
 
             <!-- Header Logo (Header Left) Start -->
-            <div class="header-logo col-auto">
-                <a href="index.php">
-                    <img src="img/litem_logo.png" alt="">
-                    <img src="img/litem_logo.png" class="logo-light" alt="" style="height: 50px; width: 100px;">
+            <div class="header-logo col-auto" >
+                <a href="index.php" >
+                    <img src="img/litem_logo.png" alt="" >
+                    <img src="img/litem_logo.png" class="logo-light" alt="" >
                 </a>
-            </div><!-- Header Logo (Header Left) End -->
+            </div>
+            <!-- Header Logo (Header Left) End -->
 
             <!-- Header Right Start -->
             <div class="header-right flex-grow-1 col-auto">

@@ -1,6 +1,6 @@
 <?php
 // Database connection
-$conn = mysqli_connect('localhost', 'u291563295_litem_fee', 'Litem@123_legalis', 'u291563295_litem_fee') or die('Unable to connect to the database.');
+$conn = mysqli_connect('localhost', 'root', '', 'litem_fee') or die('Unable to connect to the database.');
 
 // Pagination variables
 $results_per_page = 20; // Number of results per page
